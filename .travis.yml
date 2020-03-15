@@ -22,4 +22,4 @@ install:
   - docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD
   - docker push $DOCKER_HUB_USERNAME/hello-node:$CI_COMMIT
   - ssh $DEPLOYMENT_HOST "docker pull $DOCKER_HUB_USERNAME/hello-node:$CI_COMMIT"
-  - ssh $DEPLOYMENT_HOST "docker -d -p 9898:3000 $DOCKER_HUB_USERNAME/hello-node:$CI_COMMIT --binding 0.0.0.0"
+  - ssh $DEPLOYMENT_HOST "docker run -d -p 9898:3000 $DOCKER_HUB_USERNAME/hello-node:$CI_COMMIT --binding 0.0.0.0"
